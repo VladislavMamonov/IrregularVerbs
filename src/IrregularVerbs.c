@@ -20,16 +20,26 @@ void welcome()
 
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-	printf("Present simple form: %s", infinitive->expected);
+	printf("Present simple form: %s\n", infinitive->expected);
 	
 	printf("Enter the second form: ");
-	scanf("%s\n", &PastSimple->user[n]);
+	scanf("%s", &PastSimple->user[n]);
+
+	if (isalpha(PastSimple->user[n]) == 0) { //Если введённые данные не являются словом, то возвращаем ошибку
+		printf("invalid character\n");
+		return 1;
+	}
 	
 	for (int i = 0; i < n; i++)
 		PastSimple->user[i] = tolower(PastSimple->user[i]);	//Перевод введённых данных в нижний регистр
 
 	printf("Enter the third form: ");
-	scanf("%s\n", &PastParticiple->user[n]);
+	scanf("%s", &PastParticiple->user[n]);
+
+	if (isalpha(PastParticiple->user[n]) == 0) {
+		printf("invalid character\n");
+		return 1;
+	}
 
 	for (int i = 0; i < n; i++)
 		PastParticiple->user[i] = tolower(PastParticiple->user[i]);
