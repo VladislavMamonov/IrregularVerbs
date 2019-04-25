@@ -4,8 +4,8 @@
 #define n 30
 
 struct IrregularVerbs {
-	char user[n], expected[n];
-}; 
+    char user[n], expected[n];
+};
 
 void welcome();
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);

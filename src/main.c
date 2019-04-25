@@ -2,9 +2,9 @@
 
 int main()
 {
-	struct IrregularVerbs infinitive, PastSimple, PastParticiple;
+    struct IrregularVerbs infinitive, PastSimple, PastParticiple;
 
-	welcome();
+    welcome();
 
-	return 0;
+    return 0;
 }
