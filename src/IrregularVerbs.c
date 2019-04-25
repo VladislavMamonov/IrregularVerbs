@@ -14,15 +14,21 @@ void welcome()
 	printf("In the process, the initial form of the verb will be provided. You must write the other two.\n");
 }
 
-int input(struct IrregularVerbs* present, struct IrregularVerbs* past, struct IrregularVerbs* future)
+int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-	printf("Present simple form: %s", present->expected);
+	printf("Present simple form: %s", infinitive->expected);
 	
-	printf("Enter the past simple form: ");
-	scanf("%s\n", &past->user[n]);
+	printf("Enter the second form: ");
+	scanf("%s\n", &PastSimple->user[n]);
+	
+	for (int i = 0; i < n; i++)
+		PastSimple->user[i] = tolower(PastSimple->user[i]);
 
-	printf("Enter the future simple form: ");
-	scanf("%s\n", &future->user[n]);
+	printf("Enter the third form: ");
+	scanf("%s\n", &PastParticiple->user[n]);
+
+	for (int i = 0; i < n; i++)
+		PastParticiple->user[i] = tolower(PastParticiple->user[i]);
 
 	return 0;
 }

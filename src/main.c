@@ -2,7 +2,7 @@
 
 int main()
 {
-	struct IrregularVerbs present, past, future;
+	struct IrregularVerbs infinitive, PastSimple, PastParticiple;
 
 	welcome();
 

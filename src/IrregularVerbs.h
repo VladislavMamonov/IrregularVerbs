@@ -8,6 +8,6 @@ struct IrregularVerbs {
 }; 
 
 void welcome();
-int input(struct IrregularVerbs* present, struct IrregularVerbs* past, struct IrregularVerbs* future);
+int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 
 #endif
