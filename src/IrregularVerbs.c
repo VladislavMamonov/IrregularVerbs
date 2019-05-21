@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 void welcome()
 {
@@ -45,4 +46,11 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
         PastParticiple->user[i] = tolower(PastParticiple->user[i]);
 
     return 0;
+}
+
+int randomize()
+{
+    srand(time(0));
+    int rand_val = 0 + rand() % 193;
+    return rand_val;
 }
