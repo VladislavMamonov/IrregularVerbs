@@ -9,8 +9,9 @@ int main()
 
     input(&infinitive, &PastSimple, &PastParticiple);
 
-    char str[100] = "hello";
+    char str[100];
     CheckData(str);
+    printf("%s", str);
 
     return 0;
 }

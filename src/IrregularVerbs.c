@@ -72,18 +72,15 @@ int CheckData(char *str)
     lines++;
 
     int i;
-    int j=0;
+    int current_line=0;
     int random_value;
     for (i = 0; i < 1; i++) {
+        fseek(data,0,SEEK_SET);
         random_value = randomize(lines);
-        printf("random=%d\n", random_value);
-        while(j < random_value) {
-            fgets(str,sizeof(str),data);
-            j++;
-            printf("%s\n", str);
-
+        while(current_line < random_value) {
+            fgets(str,100,data);
+            current_line++;
         }  
-        printf("j=%d\n", j);
     }
     fclose(data);
     return 0;
