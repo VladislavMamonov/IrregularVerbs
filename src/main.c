@@ -1,5 +1,5 @@
 #include "IrregularVerbs.h"
-#include "stdio.h"
+#include <stdio.h>
 
 int main()
 {
@@ -9,7 +9,8 @@ int main()
 
     input(&infinitive, &PastSimple, &PastParticiple);
 
-  
+    char str[100] = "hello";
+    CheckData(str);
 
     return 0;
 }

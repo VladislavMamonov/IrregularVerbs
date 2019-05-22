@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <time.h>
+#include <unistd.h>
 
 void welcome()
 {
@@ -16,7 +16,7 @@ void welcome()
     printf("In the process, the initial form of the verb will be provided. You must write the other two.\n");
     printf("\n");
     printf("Get ready...\n");
-    sleep(5);
+    sleep(1);
 }
 
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
@@ -48,9 +48,43 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
     return 0;
 }
 
-int randomize()
+int randomize(int lines)
 {
     srand(time(0));
-    int rand_val = 0 + rand() % 193;
+    int rand_val = 1 + rand() % lines;
     return rand_val;
+}
+
+int CheckData(char *str)
+{
+    FILE* data;
+    data = fopen("IrregularVerbs.txt", "r");
+    if (data == NULL) {
+        printf("Error, file not found\n");
+        return 1;
+    }
+    int lines = 0;
+    while (!feof(data)) {
+        if (fgetc(data) == '\n') {
+            lines++;
+        }
+    }
+    lines++;
+
+    int i;
+    int j=0;
+    int random_value;
+    for (i = 0; i < 1; i++) {
+        random_value = randomize(lines);
+        printf("random=%d\n", random_value);
+        while(j < random_value) {
+            fgets(str,sizeof(str),data);
+            j++;
+            printf("%s\n", str);
+
+        }  
+        printf("j=%d\n", j);
+    }
+    fclose(data);
+    return 0;
 }
