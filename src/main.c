@@ -9,7 +9,7 @@ int main()
 
     input(&infinitive, &PastSimple, &PastParticiple);
 
-    char str[100];
+    char str[100] = {'\0'};
     CheckData(str, &infinitive, &PastSimple, &PastParticiple);
     printf("%s", str);
 

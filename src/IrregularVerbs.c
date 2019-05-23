@@ -21,7 +21,7 @@ void welcome()
 
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    printf("Present simple form: %s\n", infinitive->expected);
+    //  printf("Present simple form: %s\n", infinitive->expected);
 
     printf("Enter the second form: ");
     fgets(PastSimple->user, 30, stdin);
@@ -55,8 +55,15 @@ int randomize(int lines)
     return rand_val;
 }
 
-int CheckData(char *str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
+    int clear;
+    for (clear = 0; clear < 100; clear++) {
+        infinitive->expected[clear] = 0;
+        PastSimple->expected[clear] = 0;
+        PastParticiple->expected[clear] = 0;
+    }
+
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
     if (data == NULL) {
@@ -72,27 +79,35 @@ int CheckData(char *str, struct IrregularVerbs* infinitive, struct IrregularVerb
     lines++;
 
     int i;
-//  int j;
-    int current_line=0;
+    int j;
+    int k = 0;
+    int s = 0;
+    int current_line = 0;
     int random_value;
     for (i = 0; i < 1; i++) {
-        fseek(data,0,SEEK_SET);
+        fseek(data, 0, SEEK_SET);
         random_value = randomize(lines);
-        while(current_line < random_value) {
-            fgets(str,100,data);
+        s = 0;
+        k = 0;
+        while (current_line < random_value) {
+            fgets(str, 100, data);
             current_line++;
         }
-        /* for(j=j+1;str[j]!=' ';j++){
+        for (j = 0; str[j] != ' '; j++) {
             infinitive->expected[j] = str[j];
         }
-        for(j=j+1;str[j]!=' ';j++){
-            PastSimple->expected[j] = str[j];
+        for (j = j + 1; str[j] != ' '; j++) {
+            PastSimple->expected[s] = str[j];
+            s++;
         }
-        for(j=j+1;str[j]!=' '|| str[j]!= EOF; j++){
-            PastParticiple->expected[j] = str[j];  
-        } */
-        printf("EXPECTED - %s %s %s\n",infinitive->expected, PastSimple->expected, PastParticiple->expected);
-        printf("USER - %s %s %s\n",infinitive->user, PastSimple->user, PastParticiple->user);
+        for (j = j + 1; str[j] != ' '; j++) {
+            PastParticiple->expected[k] = str[j];
+            k++;
+        }
+        printf("EXPECTED -  %s\n", infinitive->expected);
+        printf("EXPECTED -  %s\n", PastSimple->expected);
+        printf("EXPECTED -  %s\n", PastParticiple->expected);
+        printf("USER - %s %s\n", PastSimple->user, PastParticiple->user);
     }
     fclose(data);
     return 0;
