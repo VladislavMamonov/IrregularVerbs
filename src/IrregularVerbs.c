@@ -23,9 +23,9 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
     printf("Present simple form: %s\n", infinitive->expected);
 
     printf("Enter the second form: ");
-    scanf("%s", &PastSimple->user[n]);
+    fgets(PastSimple->user, 30, stdin);
 
-    if (isalpha(PastSimple->user[n]) == 0) { //Если введённые данные не являются словом, то возвращаем ошибку
+    if (isalpha(PastSimple->user[n]) == 1) { //Если введённые данные не являются словом, то возвращаем ошибку
         printf("invalid character\n");
         return 1;
     }
@@ -34,9 +34,9 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
     printf("Enter the third form: ");
-    scanf("%s", &PastParticiple->user[n]);
+    fgets(PastParticiple->user, 30, stdin);
 
-    if (isalpha(PastParticiple->user[n]) == 0) {
+    if (isalpha(PastParticiple->user[n]) == 1) {
         printf("invalid character\n");
         return 1;
     }
