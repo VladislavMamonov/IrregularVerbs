@@ -10,5 +10,5 @@ struct IrregularVerbs {
 void welcome();
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 int randomize(int lines);
-int CheckData(char *str);
+int CheckData(char *str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 #endif

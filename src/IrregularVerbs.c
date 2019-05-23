@@ -55,7 +55,7 @@ int randomize(int lines)
     return rand_val;
 }
 
-int CheckData(char *str)
+int CheckData(char *str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
@@ -72,6 +72,7 @@ int CheckData(char *str)
     lines++;
 
     int i;
+//  int j;
     int current_line=0;
     int random_value;
     for (i = 0; i < 1; i++) {
@@ -80,7 +81,18 @@ int CheckData(char *str)
         while(current_line < random_value) {
             fgets(str,100,data);
             current_line++;
-        }  
+        }
+        /* for(j=j+1;str[j]!=' ';j++){
+            infinitive->expected[j] = str[j];
+        }
+        for(j=j+1;str[j]!=' ';j++){
+            PastSimple->expected[j] = str[j];
+        }
+        for(j=j+1;str[j]!=' '|| str[j]!= EOF; j++){
+            PastParticiple->expected[j] = str[j];  
+        } */
+        printf("EXPECTED - %s %s %s\n",infinitive->expected, PastSimple->expected, PastParticiple->expected);
+        printf("USER - %s %s %s\n",infinitive->user, PastSimple->user, PastParticiple->user);
     }
     fclose(data);
     return 0;
