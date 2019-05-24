@@ -55,14 +55,18 @@ int randomize(int lines)
     return rand_val;
 }
 
-int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    int clear;
-    for (clear = 0; clear < 100; clear++) {
-        infinitive->expected[clear] = 0;
-        PastSimple->expected[clear] = 0;
-        PastParticiple->expected[clear] = 0;
+    int i;
+    for(i = 0; i < 100; i++) {
+        infinitive->expected[i] = 0;
+        PastSimple->expected[i] = 0;
+        PastParticiple->expected[i] = 0;
     }
+}
+
+int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+{ 
 
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
@@ -84,6 +88,7 @@ int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerb
     int s = 0;
     int current_line = 0;
     int random_value;
+    clean_array(infinitive, PastSimple, PastParticiple);
     for (i = 0; i < 1; i++) {
         fseek(data, 0, SEEK_SET);
         random_value = randomize(lines);
