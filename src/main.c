@@ -7,11 +7,7 @@ int main()
 
     welcome();
 
-    input(&infinitive, &PastSimple, &PastParticiple);
-
     char str[100] = {'\0'};
-    CheckData(str, &infinitive, &PastSimple, &PastParticiple);
-    printf("%s", str);
-
+    check_data(str, &infinitive, &PastSimple, &PastParticiple);
     return 0;
 }

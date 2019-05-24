@@ -21,10 +21,10 @@ void welcome()
 
 int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    //  printf("Present simple form: %s\n", infinitive->expected);
+    printf("Present simple form: %s\n", infinitive->expected);
 
     printf("Enter the second form: ");
-    fgets(PastSimple->user, 30, stdin);
+    scanf("%s", PastSimple->user);
 
     if (isalpha(PastSimple->user[n]) == 1) { //Если введённые данные не являются словом, то возвращаем ошибку
         printf("invalid character\n");
@@ -35,7 +35,7 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
     printf("Enter the third form: ");
-    fgets(PastParticiple->user, 30, stdin);
+    scanf("%s", PastParticiple->user);
 
     if (isalpha(PastParticiple->user[n]) == 1) {
         printf("invalid character\n");
@@ -65,7 +65,8 @@ void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastS
     }
 }
 
-int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+
+int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 { 
 
     FILE* data;
@@ -88,6 +89,7 @@ int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerb
     int s = 0;
     int current_line = 0;
     int random_value;
+    int right_answers=0;
     clean_array(infinitive, PastSimple, PastParticiple);
     for (i = 0; i < 1; i++) {
         fseek(data, 0, SEEK_SET);
@@ -105,14 +107,23 @@ int CheckData(char* str, struct IrregularVerbs* infinitive, struct IrregularVerb
             PastSimple->expected[s] = str[j];
             s++;
         }
-        for (j = j + 1; str[j] != ' '; j++) {
+        for (j = j + 1; str[j] != '\n'; j++) {
             PastParticiple->expected[k] = str[j];
             k++;
         }
+
         printf("EXPECTED -  %s\n", infinitive->expected);
         printf("EXPECTED -  %s\n", PastSimple->expected);
         printf("EXPECTED -  %s\n", PastParticiple->expected);
-        printf("USER - %s %s\n", PastSimple->user, PastParticiple->user);
+
+        input(infinitive, PastSimple, PastParticiple);
+        if(strcmp(PastSimple->expected,PastSimple->user)==0){
+            right_answers++;
+        }
+        if(strcmp(PastParticiple->expected,PastParticiple->user)==0){
+            right_answers++;
+        }
+        printf("right answers %d\n", right_answers);     
     }
     fclose(data);
     return 0;
