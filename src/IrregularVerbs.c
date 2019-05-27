@@ -93,7 +93,6 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         current_line = 0;
         fseek(data, 0, SEEK_SET);
         random_value = randomize(lines);
-        printf("%d\n", random_value );
         while (current_line < random_value) {
             clean_array(infinitive, PastSimple, PastParticiple);
             fgets(str, 100, data);
@@ -113,18 +112,13 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
             k++;
         }
 
-        printf("EXPECTED -  %s\n", infinitive->expected);
-        printf("EXPECTED -  %s\n", PastSimple->expected);
-        printf("EXPECTED -  %s\n", PastParticiple->expected);
-
         input(infinitive, PastSimple, PastParticiple);
         if(strcmp(PastSimple->expected,PastSimple->user)==0){
             right_answers++;
         }
         if(strcmp(PastParticiple->expected,PastParticiple->user)==0){
             right_answers++;
-        }
-        printf("right answers %d\n", right_answers);     
+        }   
     }
     fclose(data);
     return 0;
