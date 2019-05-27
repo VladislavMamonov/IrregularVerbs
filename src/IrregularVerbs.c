@@ -19,14 +19,21 @@ void welcome()
     sleep(1);
 }
 
-int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
     printf("Present simple form: %s\n", infinitive->expected);
 
     printf("Enter the second form: ");
     scanf("%s", PastSimple->user);
 
-    if (isalpha(PastSimple->user[n]) == 1) { //Если введённые данные не являются словом, то возвращаем ошибку
+    printf("Enter the third form: ");
+    scanf("%s", PastParticiple->user);
+}
+
+
+int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+{
+    if (isalpha(PastSimple->user[n]) == 0) { //Если введённые данные не являются словом, то возвращаем ошибку
         printf("invalid character\n");
         return 1;
     }
@@ -34,10 +41,7 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
     for (int i = 0; i < n; i++)
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
-    printf("Enter the third form: ");
-    scanf("%s", PastParticiple->user);
-
-    if (isalpha(PastParticiple->user[n]) == 1) {
+    if (isalpha(PastParticiple->user[n]) == 0) {
         printf("invalid character\n");
         return 1;
     }
@@ -112,12 +116,15 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         }
 
         input(infinitive, PastSimple, PastParticiple);
+        input_check(infinitive, PastSimple, PastParticiple);
+
         if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
         }
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
+        printf("%d\n", right_answers);
     }
     fclose(data);
     return 0;
