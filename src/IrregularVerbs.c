@@ -49,7 +49,7 @@ int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, 
 }
 
 int randomize(int lines)
-{  
+{
     srand(time(NULL));
     int rand_val = 1 + rand() % lines;
     return rand_val;
@@ -58,16 +58,15 @@ int randomize(int lines)
 void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
     int i;
-    for(i = 0; i < 100; i++) {
+    for (i = 0; i < 100; i++) {
         infinitive->expected[i] = 0;
         PastSimple->expected[i] = 0;
         PastParticiple->expected[i] = 0;
     }
 }
 
-
 int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
-{ 
+{
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
     if (data == NULL) {
@@ -88,18 +87,18 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int s;
     int current_line;
     int random_value;
-    int right_answers=0;
+    int right_answers = 0;
     for (i = 0; i < 10; i++) {
-        current_line = 0;
+        clean_array(infinitive, PastSimple, PastParticiple);
         fseek(data, 0, SEEK_SET);
+        current_line = 0;
         random_value = randomize(lines);
         while (current_line < random_value) {
-            clean_array(infinitive, PastSimple, PastParticiple);
             fgets(str, 100, data);
             current_line++;
         }
-        s=0;
-        k=0;
+        s = 0;
+        k = 0;
         for (j = 0; str[j] != ' '; j++) {
             infinitive->expected[j] = str[j];
         }
@@ -113,12 +112,12 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         }
 
         input(infinitive, PastSimple, PastParticiple);
-        if(strcmp(PastSimple->expected,PastSimple->user)==0){
+        if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
         }
-        if(strcmp(PastParticiple->expected,PastParticiple->user)==0){
+        if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
-        }   
+        }
     }
     fclose(data);
     return 0;
