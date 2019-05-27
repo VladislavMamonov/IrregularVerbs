@@ -27,7 +27,7 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
     scanf("%s", PastSimple->user);
 
     printf("Enter the third form: ");
-    scanf("%s", &PastParticiple->user[n]);
+    scanf("%s", PastParticiple->user);
 }
 
 
@@ -116,12 +116,15 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         }
 
         input(infinitive, PastSimple, PastParticiple);
+        input_check(infinitive, PastSimple, PastParticiple);
+
         if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
         }
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
+        printf("%d\n", right_answers);
     }
     fclose(data);
     return 0;
