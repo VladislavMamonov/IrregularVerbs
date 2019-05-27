@@ -36,7 +36,7 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
         printf("invalid character\n");
         return 1;
     }
-    
+
     for (int i = 0; i < n; i++)
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
