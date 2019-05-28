@@ -76,5 +76,19 @@ CTEST(input_check_test, Correct_Input_test)
     ASSERT_EQUAL(0, result); 
 }
 
+CTEST(repeat_check_test, comparison_test)
+{
+    //Given
+    int arr[10];
+    int line = 1;
+    arr[5] = 1;
+
+    //When
+    const int result = repeat_check(&arr[10], line);
+
+    //Then
+    ASSERT_EQUAL(1, result);
+}
+
 
 
