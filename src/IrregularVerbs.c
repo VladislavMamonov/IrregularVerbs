@@ -118,7 +118,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int s;
     int current_line;
     int random_value;
-    int right_answers = 0;
+    float right_answers;
     int used[10]; //Массив, в который помещаются использованные строки
 
     memset(used, 0, 40); //заполняем массив нулями;
@@ -166,5 +166,55 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         used[i] = current_line;
     }
     fclose(data);
+    
+    mark(right_answers);
+    
+    return 0;
+}
+
+int mark(float right_answers)
+{
+    float questions = 10;
+    int mark = 0;
+    int percentage;
+    float one_percent;
+
+    one_percent = (questions * 2) / 100;
+    percentage = right_answers / one_percent;
+
+
+    printf("\n");
+    printf("******************************************");
+    printf("\n");
+    printf("percentage of correct answers: %d", percentage);
+    printf("\n");
+    
+    if (percentage < 50) {
+        mark = 2;
+        printf("very bad, your mark: %d\n", mark);
+        printf("do not worry, next time you will");
+    }
+
+    if (percentage > 49 && percentage < 75) {
+        mark = 3;
+        printf("your mark: %d\n", mark);
+        printf("not bad, but i'm sure you can do better");
+    }
+
+    if (percentage > 74 && percentage < 85) {
+        mark = 4;
+        printf("your mark: %d\n", mark);
+        printf("your knowledge is high enough");
+    }
+
+    if (percentage > 84) {
+        mark = 5;
+        printf("your mark: %d\n", mark);
+        printf("excellent, well-known linguists could envy your knowledge");
+    }
+
+    printf("\n");
+    printf("******************************************\n");
+
     return 0;
 }
