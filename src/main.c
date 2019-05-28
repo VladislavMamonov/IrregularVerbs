@@ -9,5 +9,6 @@ int main()
 
     char str[100] = {'\0'};
     check_data(str, &infinitive, &PastSimple, &PastParticiple);
+
     return 0;
 }

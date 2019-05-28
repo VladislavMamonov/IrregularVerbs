@@ -19,31 +19,46 @@ void welcome()
     sleep(1);
 }
 
-int input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
     printf("Present simple form: %s\n", infinitive->expected);
 
     printf("Enter the second form: ");
     scanf("%s", PastSimple->user);
 
-    if (isalpha(PastSimple->user[n]) == 1) { //Если введённые данные не являются словом, то возвращаем ошибку
-        printf("invalid character\n");
+    printf("Enter the third form: ");
+    scanf("%s", PastParticiple->user);
+}
+
+
+int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+{
+    char reject[50] = "0123456789!@#$%^&*()_+-<>,.?:;{}|/*[]"; //Запрещённые символы
+    
+    int checking = strcspn(PastSimple->user, reject); //Длина начального сегмента не содержащая reject
+    int length = strlen(PastSimple->user); //Длина строки
+
+    if (length != checking) {
+        printf("!------------------------------------------------------------------------------------------!");
+        printf("\n");
+        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+        printf("!------------------------------------------------------------------------------------------!\n");
         return 1;
     }
 
     for (int i = 0; i < n; i++)
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
-    printf("Enter the third form: ");
-    scanf("%s", PastParticiple->user);
+    checking = strcspn(PastParticiple->user, reject);
+    length = strlen(PastParticiple->user);
 
-    if (isalpha(PastParticiple->user[n]) == 1) {
-        printf("invalid character\n");
+    if (length != checking) {
+        printf("!------------------------------------------------------------------------------------------!");
+        printf("\n");
+        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+        printf("!------------------------------------------------------------------------------------------!\n");
         return 1;
     }
-
-    for (int i = 0; i < n; i++)
-        PastParticiple->user[i] = tolower(PastParticiple->user[i]);
 
     return 0;
 }
@@ -62,6 +77,8 @@ void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastS
         infinitive->expected[i] = 0;
         PastSimple->expected[i] = 0;
         PastParticiple->expected[i] = 0;
+        PastSimple->user[i] = 0;
+        PastParticiple->user[i] = 0;
     }
 }
 
@@ -89,6 +106,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int random_value;
     int right_answers = 0;
     for (i = 0; i < 10; i++) {
+        printf("\n");
         clean_array(infinitive, PastSimple, PastParticiple);
         fseek(data, 0, SEEK_SET);
         current_line = 0;
@@ -112,6 +130,8 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         }
 
         input(infinitive, PastSimple, PastParticiple);
+        input_check(infinitive, PastSimple, PastParticiple);
+
         if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
         }
