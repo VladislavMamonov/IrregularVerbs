@@ -39,7 +39,10 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     int length = strlen(PastSimple->user); //Длина строки
 
     if (length != checking) {
-        printf("invalid character\n");
+        printf("!------------------------------------------------------------------------------------------!");
+        printf("\n");
+        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+        printf("!------------------------------------------------------------------------------------------!\n");
         return 1;
     }
 
@@ -50,7 +53,10 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     length = strlen(PastParticiple->user);
 
     if (length != checking) {
-        printf("invalid character\n");
+        printf("!------------------------------------------------------------------------------------------!");
+        printf("\n");
+        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+        printf("!------------------------------------------------------------------------------------------!\n");
         return 1;
     }
 
@@ -100,6 +106,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int random_value;
     int right_answers = 0;
     for (i = 0; i < 10; i++) {
+        printf("\n");
         clean_array(infinitive, PastSimple, PastParticiple);
         fseek(data, 0, SEEK_SET);
         current_line = 0;
@@ -131,7 +138,6 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
-        printf("%d\n", right_answers);
     }
     fclose(data);
     return 0;
