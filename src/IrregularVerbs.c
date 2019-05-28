@@ -33,7 +33,12 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
 
 int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    if (isalpha(PastSimple->user[n]) == 0) { //Если введённые данные не являются словом, то возвращаем ошибку
+    char reject[50] = "0123456789!@#$%^&*()_+-<>,.?:;{}|/*[]"; //Запрещённые символы
+    
+    int checking = strcspn(PastSimple->user, reject); //Длина начального сегмента не содержащая reject
+    int length = strlen(PastSimple->user); //Длина строки
+
+    if (length != checking) {
         printf("invalid character\n");
         return 1;
     }
@@ -41,13 +46,13 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     for (int i = 0; i < n; i++)
         PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
 
-    if (isalpha(PastParticiple->user[n]) == 0) {
+    checking = strcspn(PastParticiple->user, reject);
+    length = strlen(PastParticiple->user);
+
+    if (length != checking) {
         printf("invalid character\n");
         return 1;
     }
-
-    for (int i = 0; i < n; i++)
-        PastParticiple->user[i] = tolower(PastParticiple->user[i]);
 
     return 0;
 }
@@ -66,6 +71,8 @@ void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastS
         infinitive->expected[i] = 0;
         PastSimple->expected[i] = 0;
         PastParticiple->expected[i] = 0;
+        PastSimple->user[i] = 0;
+        PastParticiple->user[i] = 0;
     }
 }
 
