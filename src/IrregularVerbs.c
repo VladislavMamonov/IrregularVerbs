@@ -32,7 +32,7 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
 
 int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    char reject[50] = "0123456789!@#$%^&*()_+-<>,.?:;{}|/*[]"; //Запрещённые символы
+    char reject[120] = "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ0123456789!@#$%^&*()_+-<>,.?:;{}|/*[]~"; //Запрещённые символы
 
     int checking = strcspn(PastSimple->user, reject); //Длина начального сегмента не содержащая reject
     int length = strlen(PastSimple->user);            //Длина строки
