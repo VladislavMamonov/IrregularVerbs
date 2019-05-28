@@ -9,32 +9,72 @@ int main(int argc, const char** argv)
     return ctest_main(argc, argv);
 }
 
-CTEST(input_test, input_Error_PastSimple_test)
+CTEST(input_check_test, Input_Error_PastSimple_test)
 {
     // Given
     struct IrregularVerbs infinitive;
     struct IrregularVerbs PastSimple;
     struct IrregularVerbs PastParticiple;
 
+    char INF[n] = "give";
+    char PS[n] = "2,.%#@&*!$^&*()_-+=./3абвгДЁ~`";
+    char PP[n] = "given";
+
+    strcpy(infinitive.expected, INF);
+    strcpy(PastSimple.user, PS);
+    strcpy(PastParticiple.user, PP);
+
 
     //When
-    const int result = input(&infinitive, &PastSimple, &PastParticiple);
+    const int result = input_check(&infinitive, &PastSimple, &PastParticiple);
 
-    //Then
-    ASSERT_EQUAL(1, result); //FALSE
+     //Then
+    ASSERT_EQUAL(1, result); 
 }
-    
-CTEST(input_test, True_PastSimple_test)
+
+CTEST(input_check_test, Input_Error_PastParticiple_test)
 {
     //Given
     struct IrregularVerbs infinitive;
     struct IrregularVerbs PastSimple;
     struct IrregularVerbs PastParticiple;
 
+    char INF[n] = "give";
+    char PS[n] = "gave";
+    char PP[n] = "GenaBukin3000";
+
+    strcpy(infinitive.expected, INF);
+    strcpy(PastSimple.user, PS);
+    strcpy(PastParticiple.user, PP);
+
     //When
-    const int result = input(&infinitive, &PastSimple, &PastParticiple);
+    const int result = input_check(&infinitive, &PastSimple, &PastParticiple);
 
     //Then
-    ASSERT_EQUAL(0, result); //TRUE
+    ASSERT_EQUAL(1, result);
 }
+
+CTEST(input_check_test, Correct_Input_test)
+{
+    //Given
+    struct IrregularVerbs infinitive;
+    struct IrregularVerbs PastSimple;
+    struct IrregularVerbs PastParticiple;
+
+    char INF[n] = "give";
+    char PS[n] = "gave";
+    char PP[n] = "given";
+
+    strcpy(infinitive.expected, INF);
+    strcpy(PastSimple.user, PS);
+    strcpy(PastParticiple.user, PP);
+
+    //When
+    const int result = input_check(&infinitive, &PastSimple, &PastParticiple);
+
+    //Then
+    ASSERT_EQUAL(0, result); 
+}
+
+
 
