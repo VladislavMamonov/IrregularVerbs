@@ -219,7 +219,7 @@ int mark(float right_answers)
     printf("\n");
     printf("******************************************\n");
 
-    return 0;
+    return mark;
 }
 
 void output(float right_answers)

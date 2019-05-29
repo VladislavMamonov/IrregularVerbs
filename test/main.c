@@ -90,5 +90,16 @@ CTEST(repeat_check_test, comparison_test)
     ASSERT_EQUAL(1, result);
 }
 
+CTEST(mark_check, intersection_check_test)
+{
+    //Given
+    int correct_answers = 4 ;
+
+    //When
+    const int result = mark(correct_answers);
+
+    //Then
+    ASSERT_EQUAL(2, result);
+}
 
 
