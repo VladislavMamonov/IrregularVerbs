@@ -131,13 +131,15 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         current_line = 0;
         random_value = randomize(lines);
 
+        if (repeat_check(used, random_value) == 1) {
+            sleep(1);
+            random_value = randomize(lines);
+        }
+
         while (current_line < random_value) {
             fgets(str, 100, data);
             current_line++;
         }
-
-        if (repeat_check(&used[10], current_line) == 1)
-            continue;
 
         s = 0;
         k = 0;
@@ -163,7 +165,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
-        used[i] = current_line;
+        used[i] = random_value;
     }
     fclose(data);
     
