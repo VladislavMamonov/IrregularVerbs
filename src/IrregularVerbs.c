@@ -118,7 +118,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int s;
     int current_line;
     int random_value;
-    int right_answers = 0;
+    float right_answers;
     int used[10]; //Массив, в который помещаются использованные строки
 
     memset(used, 0, 40); //заполняем массив нулями;
@@ -131,13 +131,15 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         current_line = 0;
         random_value = randomize(lines);
 
+        if (repeat_check(used, random_value) == 1) {
+            sleep(1);
+            random_value = randomize(lines);
+        }
+
         while (current_line < random_value) {
             fgets(str, 100, data);
             current_line++;
         }
-
-        if (repeat_check(&used[10], current_line) == 1)
-            continue;
 
         s = 0;
         k = 0;
@@ -163,8 +165,67 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
-        used[i] = current_line;
+        used[i] = random_value;
     }
     fclose(data);
+    
+    mark(right_answers);
+    output(right_answers);
+    
     return 0;
+}
+
+int mark(float right_answers)
+{
+    float questions = 10;
+    int mark = 0;
+    int percentage;
+    float one_percent;
+
+    one_percent = (questions * 2) / 100;
+    percentage = right_answers / one_percent;
+
+
+    printf("\n");
+    printf("******************************************");
+    printf("\n");
+    printf("percentage of correct answers: %d", percentage);
+    printf("\n");
+    
+    if (percentage < 50) {
+        mark = 2;
+        printf("very bad, your mark: %d\n", mark);
+        printf("do not worry, next time you will");
+    }
+
+    if (percentage > 49 && percentage < 75) {
+        mark = 3;
+        printf("your mark: %d\n", mark);
+        printf("not bad, but i'm sure you can do better");
+    }
+
+    if (percentage > 74 && percentage < 85) {
+        mark = 4;
+        printf("your mark: %d\n", mark);
+        printf("your knowledge is high enough");
+    }
+
+    if (percentage > 84) {
+        mark = 5;
+        printf("your mark: %d\n", mark);
+        printf("excellent, well-known linguists could envy your knowledge");
+    }
+
+    printf("\n");
+    printf("******************************************\n");
+
+    return 0;
+}
+
+void output(float right_answers)
+{
+    printf("_______________________________________\n");
+    printf("\n");
+    printf("The number of correct answers: %0.f\n", right_answers);
+    printf("_______________________________________\n");
 }
