@@ -168,6 +168,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     fclose(data);
     
     mark(right_answers);
+    output(right_answers);
     
     return 0;
 }
@@ -217,4 +218,12 @@ int mark(float right_answers)
     printf("******************************************\n");
 
     return 0;
+}
+
+void output(float right_answers)
+{
+    printf("_______________________________________\n");
+    printf("\n");
+    printf("The number of correct answers: %0.f\n", right_answers);
+    printf("_______________________________________\n");
 }
