@@ -2,6 +2,7 @@
 #define IRREGULAR_VERBS_H
 
 #define n 100
+#define questions 10
 
 struct IrregularVerbs {
     char user[n], expected[n];
@@ -12,7 +13,7 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
 int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 int randomize(int lines);
 void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
-int repeat_check(int arr[10], int line);
+int repeat_check(int arr[questions], int line);
 int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 void percentage_calculation(int* percentage, float right_answers);
 int mark(int* percentage);

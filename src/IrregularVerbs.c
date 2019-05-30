@@ -87,9 +87,9 @@ void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastS
     }
 }
 
-int repeat_check(int arr[10], int line)
+int repeat_check(int arr[questions], int line)
 {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < questions; i++) {
         if (arr[i] == line)
             return 1;
     }
@@ -122,11 +122,11 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int random_value;
     int percentage = 0;
     float right_answers;
-    int used[10]; //Массив, в который помещаются использованные строки
+    int used[questions]; //Массив, в который помещаются использованные строки
 
     memset(used, 0, 40); //заполняем массив нулями;
 
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < questions; i++) {
         printf("\n");
         clean_array(infinitive, PastSimple, PastParticiple);
         fseek(data, 0, SEEK_SET);
@@ -183,10 +183,9 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
 
 void percentage_calculation(int* percentage, float right_answers)
 {
-    float questions = 10;
     float one_percent;
-
-    one_percent = (questions * 2) / 100;
+    float quaere = questions;
+    one_percent = (quaere * 2) / 100;
     *percentage = right_answers / one_percent;
 }
 
