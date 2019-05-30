@@ -1,9 +1,12 @@
 os: linux
 language: C
-script:
-  -make
-  -git ls-files src/ | xargs clang-format -i && git diff --exit-code
+script: 
+  - make
+  - make test
+  - cd bin
+  - ./IrregularVerbs_test
+  - git ls-files src/ | xargs clang-format -i && git diff --exit-code
 
-  compiler: gcc
+compiler: gcc
 
-  dist: xenial
+dist: xenial
