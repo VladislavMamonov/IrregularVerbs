@@ -173,16 +173,19 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     return 0;
 }
 
-int mark(float right_answers)
+void percentage_calculation(int *percentage, float right_answers)
 {
     float questions = 10;
-    int mark = 0;
     int percentage;
     float one_percent;
 
     one_percent = (questions * 2) / 100;
     percentage = right_answers / one_percent;
+}
 
+int mark(int *percentage);
+{
+    int mark = 0;
 
     printf("\n");
     printf("******************************************");
