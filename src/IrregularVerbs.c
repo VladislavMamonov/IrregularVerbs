@@ -61,6 +61,9 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
         return 1;
     }
 
+    for (int i = 0; i < n; i++)
+        PastParticiple->user[i] = tolower(PastParticiple->user[i]); //Перевод введённых данных в нижний регистр
+
     return 0;
 }
 
