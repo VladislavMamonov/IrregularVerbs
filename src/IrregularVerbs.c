@@ -156,26 +156,30 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         }
 
         input(infinitive, PastSimple, PastParticiple);
-        input_check(infinitive, PastSimple, PastParticiple);
+
+        if (input_check(infinitive, PastSimple, PastParticiple) == 1)
+            return 1;
 
         if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
         }
+
         if (strcmp(PastParticiple->expected, PastParticiple->user) == 0) {
             right_answers++;
         }
         used[i] = current_line;
     }
+
     fclose(data);
-    
+
     percentage_calculation(&percentage, right_answers);
     mark(&percentage);
     output(right_answers);
-    
+
     return 0;
 }
 
-void percentage_calculation(int *percentage, float right_answers)
+void percentage_calculation(int* percentage, float right_answers)
 {
     float questions = 10;
     float one_percent;
@@ -184,7 +188,7 @@ void percentage_calculation(int *percentage, float right_answers)
     *percentage = right_answers / one_percent;
 }
 
-int mark(int *percentage)
+int mark(int* percentage)
 {
     int mark = 0;
 
@@ -193,7 +197,7 @@ int mark(int *percentage)
     printf("\n");
     printf("percentage of correct answers: %d", *percentage);
     printf("\n");
-    
+
     if (*percentage < 50) {
         mark = 2;
         printf("very bad, your mark: %d\n", mark);
