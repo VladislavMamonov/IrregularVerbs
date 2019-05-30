@@ -19,7 +19,10 @@ void welcome()
     sleep(1);
 }
 
-void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+void input(
+        struct IrregularVerbs* infinitive,
+        struct IrregularVerbs* PastSimple,
+        struct IrregularVerbs* PastParticiple)
 {
     printf("Present simple form: %s\n", infinitive->expected);
 
@@ -30,14 +33,18 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
     scanf("%s", PastParticiple->user);
 }
 
-int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+int input_check(
+        struct IrregularVerbs* infinitive,
+        struct IrregularVerbs* PastSimple,
+        struct IrregularVerbs* PastParticiple)
 {
     int i;
     int lenght_simple = strlen(PastSimple->user);
     int lenght_participle = strlen(PastParticiple->user);
 
     for (i = 0; i < lenght_simple; i++) {
-        if ((PastSimple->user[i] >= 'A' && PastSimple->user[i] <= 'Z') || (PastSimple->user[i] >= 'a' && PastSimple->user[i] <= 'z')) {
+        if ((PastSimple->user[i] >= 'A' && PastSimple->user[i] <= 'Z')
+            || (PastSimple->user[i] >= 'a' && PastSimple->user[i] <= 'z')) {
             PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
         } else {
             printf("!---------------------------------------------------------!");
@@ -54,7 +61,7 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
             || (PastParticiple->user[i] >= 'a' && PastParticiple->user[i] <= 'z')) {
             PastParticiple->user[i] = tolower(PastParticiple->user[i]);
         } else {
-           printf("!---------------------------------------------------------!");
+            printf("!---------------------------------------------------------!");
             printf("\n");
             printf("An invalid character was entered. Please, repeat input\n");
             printf("!---------------------------------------------------------!\n");
@@ -65,7 +72,6 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     return 0;
 }
 
-
 int randomize(int lines)
 {
     srand(time(NULL));
@@ -74,7 +80,10 @@ int randomize(int lines)
     return rand_val;
 }
 
-void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+void clean_array(
+        struct IrregularVerbs* infinitive,
+        struct IrregularVerbs* PastSimple,
+        struct IrregularVerbs* PastParticiple)
 {
     int i;
 
@@ -96,7 +105,10 @@ int repeat_check(int arr[questions], int line)
     return 0;
 }
 
-int check_data(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+int check_data(
+        struct IrregularVerbs* infinitive,
+        struct IrregularVerbs* PastSimple,
+        struct IrregularVerbs* PastParticiple)
 {
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
@@ -139,7 +151,7 @@ int check_data(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSim
             random_value = randomize(lines);
 
         while (current_line < random_value) {
-            fgets(str, n , data);
+            fgets(str, n, data);
             current_line++;
         }
 
@@ -149,10 +161,12 @@ int check_data(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSim
         for (j = 0; str[j] != ' '; j++) {
             infinitive->expected[j] = str[j];
         }
+
         for (j = j + 1; str[j] != ' '; j++) {
             PastSimple->expected[s] = str[j];
             s++;
         }
+
         for (j = j + 1; str[j] != '\n'; j++) {
             PastParticiple->expected[k] = str[j];
             k++;
