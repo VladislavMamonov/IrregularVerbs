@@ -32,38 +32,34 @@ void input(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple,
 
 int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
-    char reject[200] = "йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ0123456789!@#$%^&*()_+-<>,.?:;{}|/*[]~"; //Запрещённые символы
+    int i;
+    int lenght_simple = strlen(PastSimple->user);
+    int lenght_participle = strlen(PastParticiple->user);
 
-    int checking = strcspn(PastSimple->user, reject); //Длина начального сегмента не содержащая reject
-    int length = strlen(PastSimple->user);            //Длина строки
-
-    if (length != checking) {
-        printf("!------------------------------------------------------------------------------------------!");
-        printf("\n");
-        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
-        printf("!------------------------------------------------------------------------------------------!\n");
-
-        return 1;
+    for (i = 0; i < lenght_simple; i++) {
+        if ((PastSimple->user[i] >= 'A' && PastSimple->user[i] <= 'Z') || (PastSimple->user[i] >= 'a' && PastSimple->user[i] <= 'z')) {
+            PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
+        } else {
+            printf("!------------------------------------------------------------------------------------------!");
+            printf("\n");
+            printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+            printf("!------------------------------------------------------------------------------------------!\n");
+            return 1;
+        }
     }
 
-    for (int i = 0; i < n; i++)
-        PastSimple->user[i] = tolower(PastSimple->user[i]); //Перевод введённых данных в нижний регистр
-
-    checking = strcspn(PastParticiple->user, reject);
-    length = strlen(PastParticiple->user);
-
-    if (length != checking) {
-        printf("!------------------------------------------------------------------------------------------!");
-        printf("\n");
-        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
-        printf("!------------------------------------------------------------------------------------------!\n");
-
-        return 1;
+    for (i = 0; i < lenght_participle; i++) {
+        if ((PastParticiple->user[i] >= 'A' && PastParticiple->user[i] <= 'Z')
+            || (PastParticiple->user[i] >= 'a' && PastParticiple->user[i] <= 'z')) {
+            PastParticiple->user[i] = tolower(PastParticiple->user[i]);
+        } else {
+            printf("!------------------------------------------------------------------------------------------!");
+            printf("\n");
+            printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
+            printf("!------------------------------------------------------------------------------------------!\n");
+            return 1;
+        }
     }
-
-    for (int i = 0; i < n; i++)
-        PastParticiple->user[i] = tolower(PastParticiple->user[i]); //Перевод введённых данных в нижний регистр
-
     return 0;
 }
 
