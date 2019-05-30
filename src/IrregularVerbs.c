@@ -135,10 +135,8 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
         current_line = 0;
         random_value = randomize(lines);
 
-        if (repeat_check(used, random_value) == 1) {
-            sleep(1);
+        while (repeat_check(used, random_value) == 1)
             random_value = randomize(lines);
-        }
 
         while (current_line < random_value) {
             fgets(str, 100, data);
