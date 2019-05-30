@@ -14,7 +14,7 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
 int randomize(int lines);
 void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 int repeat_check(int arr[questions], int line);
-int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
+int check_data(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple);
 void percentage_calculation(int* percentage, float right_answers);
 int mark(int* percentage);
 void output(float right_answers);

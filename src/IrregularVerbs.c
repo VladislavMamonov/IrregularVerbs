@@ -96,7 +96,7 @@ int repeat_check(int arr[questions], int line)
     return 0;
 }
 
-int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
+int check_data(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSimple, struct IrregularVerbs* PastParticiple)
 {
     FILE* data;
     data = fopen("IrregularVerbs.txt", "r");
@@ -122,6 +122,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
     int random_value;
     int percentage = 0;
     float right_answers;
+    char str[n] = {'\0'};
     int used[questions]; //Массив, в который помещаются использованные строки
 
     memset(used, 0, 40); //заполняем массив нулями;

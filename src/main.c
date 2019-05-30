@@ -7,9 +7,7 @@ int main()
 
     welcome();
 
-    char str[n] = {'\0'};
-
-    check_data(str, &infinitive, &PastSimple, &PastParticiple);
+    check_data(&infinitive, &PastSimple, &PastParticiple);
 
     return 0;
 }
