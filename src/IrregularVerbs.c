@@ -78,7 +78,7 @@ void clean_array(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastS
 {
     int i;
 
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < n; i++) {
         infinitive->expected[i] = 0;
         PastSimple->expected[i] = 0;
         PastParticiple->expected[i] = 0;
@@ -138,7 +138,7 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
             random_value = randomize(lines);
 
         while (current_line < random_value) {
-            fgets(str, 100, data);
+            fgets(str, n , data);
             current_line++;
         }
 
