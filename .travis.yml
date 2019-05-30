@@ -1,8 +1,8 @@
 os: linux
 language: C
 script:
-  - make
-  - git ls-files src/ | xargs clang-format -i && git diff --exit-code
+  -make
+  -git ls-files src/ | xargs clang-format -i && git diff --exit-code
 
   compiler: gcc
 
