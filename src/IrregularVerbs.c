@@ -38,10 +38,10 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     int length = strlen(PastSimple->user);            //Длина строки
 
     if (length != checking) {
-        printf("!------------------------------------------------------------------------------------------!");
+        printf("!---------------------------------------------------------!");
         printf("\n");
-        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
-        printf("!------------------------------------------------------------------------------------------!\n");
+        printf("An invalid character was entered. Please, repeat input\n");
+        printf("!---------------------------------------------------------!\n");
 
         return 1;
     }
@@ -53,10 +53,10 @@ int input_check(struct IrregularVerbs* infinitive, struct IrregularVerbs* PastSi
     length = strlen(PastParticiple->user);
 
     if (length != checking) {
-        printf("!------------------------------------------------------------------------------------------!");
+        printf("!---------------------------------------------------------!");
         printf("\n");
-        printf("An invalid character was entered. Continue to be careful. We suggest you take the test again.\n");
-        printf("!------------------------------------------------------------------------------------------!\n");
+        printf("An invalid character was entered. Please, repeat input\n");
+        printf("!---------------------------------------------------------!\n");
 
         return 1;
     }
@@ -160,8 +160,9 @@ int check_data(char* str, struct IrregularVerbs* infinitive, struct IrregularVer
 
         input(infinitive, PastSimple, PastParticiple);
 
-        if (input_check(infinitive, PastSimple, PastParticiple) == 1)
-            return 1;
+        while (input_check(infinitive, PastSimple, PastParticiple) == 1) {
+            input(infinitive, PastSimple, PastParticiple);
+        }
 
         if (strcmp(PastSimple->expected, PastSimple->user) == 0) {
             right_answers++;
