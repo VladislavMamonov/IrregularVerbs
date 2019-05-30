@@ -90,16 +90,32 @@ CTEST(repeat_check_test, comparison_test)
     ASSERT_EQUAL(1, result);
 }
 
-CTEST(mark_check, intersection_check_test)
+CTEST(mark_test, intersection_check_test1)
 {
     //Given
-    int correct_answers = 4 ;
+    int percentage1 = 49;
+    int percentage2 = 50;
+    int percentage3 = 74;
+    int percentage4 = 75;
+    int percentage5 = 84;
+    int percentage6 = 85;
 
     //When
-    const int result = mark(correct_answers);
-
+    const int result1 = mark(&percentage1);
+    const int result2 = mark(&percentage2);
+    const int result3 = mark(&percentage3);
+    const int result4 = mark(&percentage4);
+    const int result5 = mark(&percentage5);
+    const int result6 = mark(&percentage6);
     //Then
-    ASSERT_EQUAL(2, result);
+    ASSERT_EQUAL(2, result1);
+    ASSERT_EQUAL(3, result2);
+    ASSERT_EQUAL(3, result3);
+    ASSERT_EQUAL(4, result4);
+    ASSERT_EQUAL(4, result5);
+    ASSERT_EQUAL(5, result6);
 }
+
+
 
 
